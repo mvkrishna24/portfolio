@@ -1,0 +1,120 @@
+/* ============================================
+   CINEMATIC PORTFOLIO — DESIGN SYSTEM
+   Your single source of truth for all styling
+   ============================================ */
+
+@import "tailwindcss";
+
+/* ─── GOOGLE FONTS ─────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap');
+
+/* ─── CSS VARIABLES (your design tokens) ───── */
+:root {
+  /* Colors */
+  --color-bg:          #080810;   /* near-black, deep space */
+  --color-bg-2:        #0d0d1a;   /* cards, elevated surfaces */
+  --color-bg-3:        #12121f;   /* subtle section breaks */
+
+  --color-primary:     #c8a96e;   /* warm gold — your signature accent */
+  --color-primary-dim: #a8895040; /* gold at low opacity for glows */
+
+  --color-text:        #e8e4dc;   /* warm off-white — easier on eyes */
+  --color-text-muted:  #7a7a8c;   /* secondary text, captions */
+  --color-text-faint:  #3a3a50;   /* very subtle, dividers */
+
+  --color-border:      #1e1e30;   /* subtle borders */
+  --color-border-glow: #c8a96e30; /* gold-tinted border for hover */
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;  /* cinematic headings */
+  --font-body:    'Outfit', sans-serif;                   /* clean body text */
+  --font-mono:    'DM Mono', monospace;                   /* code, labels */
+
+  /* Spacing scale */
+  --space-section: 120px;  /* gap between sections */
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── GLOBAL RESET ───────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── TYPOGRAPHY DEFAULTS ────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 7rem); }
+h2 { font-size: clamp(2rem, 5vw, 4rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+
+p {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-primary);
+}
+
+/* ─── SELECTION COLOR ────────────────────── */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* ─── SCROLLBAR (makes it cinematic too) ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+
+/* ─── UTILITY CLASSES ────────────────────── */
+.section-padding {
+  padding: var(--space-section) 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 4rem);
+}
+
+.gold { color: var(--color-primary); }
+.mono { font-family: var(--font-mono); }
+
+/* Gold line divider — you'll use this a lot */
+.gold-line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
