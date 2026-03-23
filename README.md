@@ -1,16 +1,46 @@
 # React + Vite
+# Cinematic Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium personal portfolio built to showcase my frontend craftsmanship, backend project work, and creative visual identity through cinematic design, smooth animations, and modern web experiences.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This portfolio is designed as more than a simple personal website. It is a visual and technical statement of how I build interfaces, structure projects, and present my work as a developer. The goal is to create a polished space that reflects both engineering skill and design taste.
 
-## React Compiler
+The project focuses on:
+- cinematic UI and motion-driven experience
+- clean component-based architecture
+- strong frontend presentation
+- room to showcase backend and full-stack projects
+- a personal touch through visual storytelling and photography
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack -> React + Vite
 
-## Expanding the ESLint configuration
+- **React**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+- **JavaScript**
+- **CSS Variables**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- Full-screen cinematic hero section
+- Smooth Framer Motion animations
+- Letter-by-letter animated name reveal
+- Premium dark theme with gold accent styling
+- Responsive layout foundation
+- Clean project structure for scalability
+- Dedicated portfolio data file for easy content updates
+
+## Project Structure
+
+```bash
+src/
+├── components/        # Reusable UI components
+├── sections/          # Page sections like Hero, About, Skills, Projects
+├── constants/         # Portfolio content and configuration
+├── styles/            # Global styles
+├── assets/            # Images, icons, and visuals
+├── App.jsx
+└── main.jsx
