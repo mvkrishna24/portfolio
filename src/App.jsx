@@ -1,13 +1,22 @@
-// src/App.jsx
-import './styles/globals.css'
+import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
+import About from './sections/About'
+import Skills from './sections/Skills'
+import Projects from './sections/Projects'
+import Contact from './sections/Contact'
 
 function App() {
   return (
-    <main>
-      <Hero />
-      {/* Day 3+: Navbar, About, Skills... added here */}
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+    </>
   )
 }
 
