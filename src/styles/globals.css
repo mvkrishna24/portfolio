@@ -96,3 +96,21 @@ a {
   background: var(--color-primary);
   margin-bottom: 1.5rem;
 }
+.will-animate {
+  will-change: transform, opacity;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 3px;
+}
