@@ -90,3 +90,43 @@ export const ABOUT = {
     },
   ],
 }
+export const SKILLS_DATA = {
+  backend: [
+    { name: 'Java',            level: 75, note: 'Primary language' },
+    { name: 'Spring Boot',     level: 68, note: 'REST APIs, JWT, JPA' },
+    { name: 'PostgreSQL',      level: 62, note: 'Queries, schema design' },
+    { name: 'REST API Design', level: 70, note: 'Backend structuring' },
+    { name: 'JWT Auth',        level: 58, note: 'Authentication basics' },
+    { name: 'Docker',          level: 42, note: 'Learning containerization' },
+  ],
+
+  frontend: [
+    { name: 'React',           level: 72, note: 'Components, props, hooks' },
+    { name: 'JavaScript',      level: 74, note: 'ES6+, async/await' },
+    { name: 'Tailwind CSS',    level: 70, note: 'Utility-first styling' },
+    { name: 'Framer Motion',   level: 58, note: 'Animations and transitions' },
+    { name: 'HTML & CSS',      level: 85, note: 'Semantic and responsive UI' },
+  ],
+
+  tools: [
+    { name: 'Git & GitHub',    level: 72, note: 'Version control workflow' },
+    { name: 'IntelliJ IDEA',   level: 78, note: 'Java development' },
+    { name: 'VS Code',         level: 85, note: 'Frontend and general coding' },
+    { name: 'Postman',         level: 68, note: 'API testing' },
+    { name: 'Maven',           level: 55, note: 'Java build tool' },
+    { name: 'Figma',           level: 40, note: 'Basic UI exploration' },
+  ],
+}
+
+export const TECH_STACK = [
+  'Java',
+  'Spring Boot',
+  'PostgreSQL',
+  'React',
+  'Tailwind CSS',
+  'Framer Motion',
+  'Git',
+  'Postman',
+  'REST APIs',
+  'JWT',
+]
