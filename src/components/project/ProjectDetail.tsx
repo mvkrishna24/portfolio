@@ -120,7 +120,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
       <div data-reveal className="hairline mt-20 flex items-center justify-between rounded-2xl bg-panel/50 p-6">
         <p className="text-sm text-mist">Want the full system walkthrough?</p>
         <a
-          href="mailto:marthavamshikrishna1024@gmail.com"
+          href="mailto:m.v.krishnaa@gmail.com"
           className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.03]"
         >
           Get in touch

@@ -32,8 +32,9 @@ export default function Contact() {
           <span className="text-gradient">production-grade</span>.
         </h2>
         <p className="relative mx-auto mt-6 max-w-xl text-mist">
-          Open to software engineering internships, backend roles, and AI
-          automation work. Direct line, no contact forms.
+          Open to software engineering internships, backend roles, AI automation
+          work, and startup engineering opportunities. Direct line, no contact
+          forms.
         </p>
 
         <div className="relative mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -41,7 +42,7 @@ export default function Contact() {
             href={`mailto:${profile.email}`}
             className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.03]"
           >
-            {profile.email}
+            Email
           </a>
           <a
             href={profile.github}
@@ -58,6 +59,20 @@ export default function Contact() {
             className="glass rounded-full px-6 py-3 text-sm transition-colors hover:border-signal/40"
           >
             LinkedIn
+          </a>
+          <a
+            href={profile.resume}
+            className="glass rounded-full px-6 py-3 text-sm transition-colors hover:border-signal/40"
+          >
+            Resume
+          </a>
+          <a
+            href={profile.instagram}
+            target="_blank"
+            rel="noreferrer"
+            className="glass rounded-full px-6 py-3 text-sm transition-colors hover:border-signal/40"
+          >
+            Instagram
           </a>
         </div>
       </div>

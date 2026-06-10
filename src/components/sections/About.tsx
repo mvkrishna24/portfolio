@@ -21,10 +21,14 @@ export default function About() {
       <div className="grid gap-12 lg:grid-cols-5">
         <div data-reveal className="lg:col-span-2">
           <p className="text-lg leading-relaxed text-mist">
-            Not a tutorial developer. I design data models before screens, plan
-            for failure before launch, and treat caching, rate limiting, and
-            offline behavior as table stakes — because that&apos;s what shipping
-            real software means.
+            Final-year B.Tech Computer Science student specialising in
+            Artificial Intelligence &amp; Machine Learning, focused on backend
+            engineering, Java Spring Boot systems, and AI automation workflows.
+          </p>
+          <p className="mt-6 text-lg leading-relaxed text-mist">
+            I build projects as production systems — with caching, rate
+            limiting, database design, API documentation, CI/CD, testing,
+            deployment, and failure handling built in from day one.
           </p>
           <p className="mt-6 text-lg leading-relaxed text-mist">
             Currently seeking{" "}

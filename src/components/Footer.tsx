@@ -7,12 +7,15 @@ export default function Footer() {
         <p className="font-mono text-xs tracking-widest text-mist">
           © {new Date().getFullYear()} {profile.name.toUpperCase()}
         </p>
-        <div className="flex gap-6 font-mono text-xs tracking-widest">
+        <div className="flex flex-wrap justify-center gap-6 font-mono text-xs tracking-widest">
           <a href={profile.github} className="text-mist transition-colors hover:text-signal" target="_blank" rel="noreferrer">
             GITHUB
           </a>
           <a href={profile.linkedin} className="text-mist transition-colors hover:text-signal" target="_blank" rel="noreferrer">
             LINKEDIN
+          </a>
+          <a href={profile.instagram} className="text-mist transition-colors hover:text-signal" target="_blank" rel="noreferrer">
+            INSTAGRAM
           </a>
           <a href={`mailto:${profile.email}`} className="text-mist transition-colors hover:text-signal">
             EMAIL
