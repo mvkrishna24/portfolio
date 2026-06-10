@@ -15,7 +15,8 @@ export default function Stack() {
       <SectionHeading
         index="02"
         label="Capability Matrix"
-        title="One stack, from database to deployment."
+        title="One stack, from backend systems to AI automation."
+        subtitle="A practical engineering toolkit focused on APIs, data, caching, automation, and production delivery."
       />
 
       <div className="hairline divide-y divide-line overflow-hidden rounded-2xl bg-panel/40">
