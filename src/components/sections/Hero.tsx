@@ -12,14 +12,23 @@ const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
 });
 
+const BG_TEXT =
+  "BACKEND SYSTEMS · AI AUTOMATION · JAVA SPRING BOOT · PRODUCTION APIs · ";
+
+const hudCards = [
+  { label: "Redis Cache", value: "99.98%", unit: "Hit Rate", color: "#a78bfa", top: "22%", right: "3.5%" },
+  { label: "Metro Graph",  value: "290",    unit: "Stations",  color: "#67e8f9", top: "40%", right: "1.5%" },
+  { label: "LeadOps",      value: "<10s",   unit: "Response",  color: "#34d399", top: "58%", right: "4.5%" },
+  { label: "Spring Boot",  value: "APIs",   unit: "Production",color: "#f4f4f6", top: "74%", right: "2%" },
+] as const;
+
 export default function Hero() {
   const introDone = useAppStore((s) => s.introDone);
   const section = useRef<HTMLElement>(null);
   const [sceneActive, setSceneActive] = useState(true);
   const [webglOk, setWebglOk] = useState(false);
 
-  // Probe for hardware-accelerated WebGL off the critical path; software
-  // renderers get the static gradient backdrop instead of the 3D scene.
+  // Probe for hardware-accelerated WebGL off the critical path.
   useEffect(() => {
     const id = requestAnimationFrame(() => {
       if (!prefersReducedMotion()) setWebglOk(hasPerformantWebGL());
@@ -27,8 +36,8 @@ export default function Hero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // WebGL mounts only after the intro so it never competes with first paint;
-  // the frameloop pauses whenever the hero scrolls out of view.
+  // WebGL mounts after the intro so it never competes with first paint;
+  // the frameloop pauses when the hero scrolls out of view.
   useEffect(() => {
     if (!introDone) return;
     const el = section.current;
@@ -43,25 +52,56 @@ export default function Hero() {
 
   useGSAP(
     () => {
-      // content is visible in SSR for SEO/LCP; the preloader covers the
-      // first paint, so initializing animation states here never flashes
       if (!introDone || prefersReducedMotion()) return;
 
+      // ── Title reveal ─────────────────────────────────────────
       const split = SplitText.create("[data-hero-title]", {
         type: "lines",
         linesClass: "line",
         mask: "lines",
       });
 
-      gsap
-        .timeline({ defaults: { ease: "power4.out" } })
-        .from(split.lines, { yPercent: 110, duration: 0.95, stagger: 0.08 })
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      tl.from(split.lines, { yPercent: 110, duration: 0.95, stagger: 0.08 })
         .fromTo(
           "[data-hero-fade]",
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 },
           "-=0.6"
         );
+
+      // ── HUD cards fade-in + continuous float ──────────────────
+      // Only animate if the xl breakpoint is active (cards are hidden below xl)
+      const hudEls = gsap.utils.toArray<HTMLElement>("[data-hud-card]", section.current ?? undefined);
+      if (hudEls.length) {
+        // Initial reveal staggered after the main hero anim
+        gsap.fromTo(
+          hudEls,
+          { opacity: 0, y: 14 },
+          {
+            opacity: 0.72,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.14,
+            ease: "power3.out",
+            delay: 1.1,
+            onComplete() {
+              // Start the infinite float loop once visible
+              hudEls.forEach((card, i) => {
+                gsap.to(card, {
+                  y: -11 + (i % 2) * 5,
+                  duration: 2.6 + i * 0.45,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: "sine.inOut",
+                  delay: i * 0.55,
+                });
+              });
+            },
+          }
+        );
+      }
 
       return () => split.revert();
     },
@@ -74,10 +114,30 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-svh items-center overflow-hidden"
     >
-      {/* 3D layer — dimmed on small screens so the headline stays legible */}
+      {/* ── Background typography crawl ───────────────────────
+          Large, low-opacity horizontal ticker. GPU-composited via CSS
+          animation (will-change: transform). Paused on prefers-reduced-motion.
+      */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[1] select-none overflow-hidden"
+      >
+        <div
+          className="hero-bg-text absolute top-[37%] flex whitespace-nowrap font-bold uppercase text-white"
+          style={{
+            fontSize: "clamp(3.5rem, 8.5vw, 8rem)",
+            letterSpacing: "0.11em",
+            opacity: 0.033,
+          }}
+        >
+          <span>{BG_TEXT}</span>
+          <span aria-hidden="true">{BG_TEXT}</span>
+        </div>
+      </div>
+
+      {/* ── 3D / backdrop layer ───────────────────────────────── */}
       <div className="absolute inset-0 z-0 opacity-60 sm:opacity-100">
         {introDone && webglOk && <HeroScene active={sceneActive} />}
-        {/* static backdrop — always present, sole visual on non-accelerated devices */}
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -89,6 +149,38 @@ export default function Hero() {
         <div className="absolute inset-0 bg-void/40 sm:bg-transparent" />
       </div>
 
+      {/* ── Floating HUD cards — xl screens only ─────────────────
+          Positioned in the right-hand "empty" zone of the hero.
+          Each card fades in after the headline, then floats indefinitely.
+      */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5] hidden xl:block"
+      >
+        {hudCards.map((card) => (
+          <div
+            key={card.label}
+            data-hud-card
+            className="glass absolute rounded-xl px-4 py-3 opacity-0"
+            style={{ top: card.top, right: card.right, minWidth: "138px" }}
+          >
+            <p className="font-mono text-[10px] tracking-[0.22em] text-mist/80 uppercase">
+              {card.label}
+            </p>
+            <p
+              className="mt-0.5 font-mono text-xl font-semibold tabular-nums"
+              style={{ color: card.color }}
+            >
+              {card.value}
+            </p>
+            <p className="font-mono text-[9px] tracking-[0.2em] text-mist/50 uppercase">
+              {card.unit}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Main content ─────────────────────────────────────────── */}
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-28 pb-24 sm:pt-24">
         <p data-hero-fade className="mb-6 font-mono text-xs tracking-[0.3em] text-signal">
           ▸ SYSTEM ONLINE — PORTFOLIO v2.0
@@ -106,8 +198,9 @@ export default function Hero() {
         </h1>
 
         <p data-hero-fade className="mt-8 max-w-xl text-lg leading-relaxed text-mist">
-          Building production-grade backend systems, AI-powered workflows, and
-          real-world software products.
+          I build production-grade backend systems, offline-first mobile
+          platforms, and AI automation workflows with Java, Spring Boot,
+          PostgreSQL, Redis, Docker, and n8n.
         </p>
 
         <div data-hero-fade className="mt-10 flex flex-wrap items-center gap-3">
@@ -142,9 +235,9 @@ export default function Hero() {
         <div data-hero-fade className="mt-16 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] tracking-[0.2em] text-mist uppercase sm:mt-20">
           <span>Java / Spring Boot</span>
           <span>PostgreSQL / Redis</span>
-          <span>n8n / OpenAI</span>
-          <span>React / Next.js</span>
-          <span>Docker</span>
+          <span>n8n / Gemini</span>
+          <span>React Native / Next.js</span>
+          <span>Docker / CI/CD</span>
         </div>
       </div>
 

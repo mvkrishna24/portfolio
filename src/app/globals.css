@@ -87,7 +87,31 @@ body {
   overflow: hidden;
 }
 
-/* Lenis recommended styles */
+/* ── Marquee / ticker animations ─────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.hero-bg-text {
+  animation: ticker 80s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee-track {
+  animation: ticker 36s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-text,
+  .tech-marquee-track {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+/* ── Lenis recommended styles ──────────────────────────────── */
 html.lenis,
 html.lenis body {
   height: auto;
